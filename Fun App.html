@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sadaf ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #ffb6da, #ff8ac6, #ff6bb3);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            transition: background 1s ease;
+        }
+
+        body.birthday-time {
+            background: linear-gradient(135deg, #ff4081, #ff6bb3, #ff8ac6);
+            animation: rainbow 3s infinite alternate;
+        }
+
+        @keyframes rainbow {
+            0% { background: linear-gradient(135deg, #ff4081, #ff6bb3, #ff8ac6); }
+            50% { background: linear-gradient(135deg, #ff6bb3, #ff8ac6, #ff4081); }
+            100% { background: linear-gradient(135deg, #ff8ac6, #ff4081, #ff6bb3); }
+        }
+
+        section {
+            display: none;
+            padding: 40px 20px;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .active {
+            display: flex;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        p {
+            font-size: 1.5rem;
+            max-width: 650px;
+            margin: 20px auto;
+            line-height: 1.6;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            margin: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            background: white;
+            color: #e60073;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover { 
+            transform: scale(1.1); 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        #noBtn { 
+            position: absolute; 
+            transition: all 0.3s ease;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 999;
+            border-radius: 50%;
+        }
+
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: floatUp 2s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .firework {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 20px auto;
+            border: 5px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ffb6da, #ff8ac6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+        }
+
+        .message-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 700px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        #countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+        }
+
+        .birthday-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.95);
+            color: #e60073;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .birthday-message h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .birthday-message p {
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.7;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        .romantic-quote {
+            font-style: italic;
+            margin: 30px 0;
+            font-size: 1.3rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .final-message {
+            font-size: 1.8rem;
+            margin: 30px 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            p {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+            
+            .photo-frame {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .birthday-message {
+                padding: 20px;
+                width: 90%;
+            }
+            
+            .birthday-message h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating hearts background -->
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<!-- Birthday Celebration Message -->
+<div class="birthday-message" id="birthdayMessage">
+    <h2>🎂 Happy Birthday Sadaf! 🎂</h2>
+    <p>Your special day is finally here! 🥳</p>
+    <p>Get ready for your birthday surprise! 💝</p>
+    <p>I hope this year brings you endless happiness and love! ✨</p>
+    <button class="btn" onclick="closeBirthdayMessage()" style="margin-top: 20px;">Continue Celebration</button>
+</div>
+
+<!-- PAGE 1: Romantic Intro + Countdown -->
+<section id="page1" class="active">
+    <div class="photo-frame">
+        <div class="photo-placeholder">❤️</div>
+    </div>
+    
+    <h1>Happy 23rd Birthday, Sadaf ❤️</h1>
+    
+    <div class="message-container">
+        <p>
+            On this beautiful day, my heart celebrates the girl who makes my world brighter.  
+            Your smile, your softness, your kindness — everything about you feels like magic.  
+            Today belongs to you... and I'm grateful I get to be even a small part of your happiness. 💖
+        </p>
+    </div>
+
+    <div class="romantic-quote">
+        "In your smile, I see something more beautiful than the stars." - Saud
+    </div>
+
+    <h2>⏳ Countdown to Your Birthday Night Surprise:</h2>
+    <div class="countdown-container">
+        <div id="countdown"></div>
+    </div>
+
+    <button class="btn" onclick="nextPage(2)">Continue 💕</button>
+</section>
+
+<!-- PAGE 2: Do You Love Me? -->
+<section id="page2">
+    <h1>Do you love me, Sadaf? 😏💗</h1>
+    
+    <div class="photo-frame">
+        <div class="photo-placeholder">💕</div>
+    </div>
+    
+    <div class="message-container">
+        <p>Your answer will determine the fate of this webpage! Choose wisely 😉</p>
+    </div>
+    
+    <div>
+        <button class="btn" onclick="nextPage(3)">Yes ❤️</button>
+        <button class="btn" id="noBtn">No 😐</button>
+    </div>
+</section>
+
+<!-- PAGE 3: Final Romantic + Funny Page -->
+<section id="page3">
+    <h1>Hehe, I knew it 😌❤️</h1>
+    
+    <div class="photo-frame">
+        <div class="photo-placeholder">😘</div>
+    </div>
+    
+    <div class="message-container">
+        <p>
+            Thank you for choosing "Yes"...  
+            not that you had a choice anyway 😭💗  
+            But honestly, having you in my life feels like the cutest blessing ever.  
+            You're my happiness, my softness, my peace — and my headache sometimes but still cute. 😭❤️  
+        </p>
+    </div>
+    
+    <div class="final-message">
+        Happy Birthday, my Gulalai! 🎂🎉
+    </div>
+    
+    <button class="btn" onclick="nextPage(1)">Start Over 🔄</button>
+</section>
+
+<script>
+    // Global variables
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+    let mouseVelocityX = 0;
+    let mouseVelocityY = 0;
+    let mouseConfettiInterval;
+    let birthdayCelebrationStarted = false;
+
+    // PAGE SWITCHER
+    function nextPage(num) {
+        document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+        document.getElementById("page" + num).classList.add("active");
+
+        if(num === 2) {
+            startMouseConfetti();
+            createHearts();
+        }
+        if(num === 3) {
+            stopMouseConfetti();
+            startConfettiRain();
+            createHeartRain();
+        }
+    }
+
+    // RUNAWAY NO BUTTON
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", () => {
+        noBtn.style.left = Math.random() * 70 + "%";
+        noBtn.style.top = Math.random() * 70 + "%";
+    });
+
+    // Create floating hearts in background
+    function createFloatingHearts() {
+        const container = document.getElementById('floatingHearts');
+        const hearts = ['❤️', '💕', '💖', '💗', '💓', '💞'];
+        
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (15 + Math.random() * 15) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+            container.appendChild(heart);
+        }
+    }
+
+    // Create hearts on page 2
+    function createHearts() {
+        const hearts = ['❤️', '💕', '💖'];
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }, i * 300);
+        }
+    }
+
+    // Create heart rain on page 3
+    function createHeartRain() {
+        setInterval(() => {
+            if (!document.getElementById("page3").classList.contains("active")) return;
+            
+            const hearts = ['❤️', '💕', '💖', '💗'];
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }, 500);
+    }
+
+    // ******** PAGE 2 — IMPROVED MOUSE FOLLOW CONFETTI WITH HEARTS ********
+    function startMouseConfetti(){
+        document.addEventListener("mousemove", mouseMoveHandler);
+        mouseConfettiInterval = setInterval(createMouseTrail, 50);
+    }
+
+    function stopMouseConfetti(){
+        document.removeEventListener("mousemove", mouseMoveHandler);
+        if (mouseConfettiInterval) {
+            clearInterval(mouseConfettiInterval);
+        }
+    }
+
+    function mouseMoveHandler(e){
+        mouseVelocityX = e.pageX - lastMouseX;
+        mouseVelocityY = e.pageY - lastMouseY;
+        lastMouseX = e.pageX;
+        lastMouseY = e.pageY;
+    }
+
+    function createMouseTrail(){
+        if (!document.getElementById("page2").classList.contains("active")) {
+            stopMouseConfetti();
+            return;
+        }
+        
+        // Create confetti particles
+        for (let i = 0; i < 2; i++) {
+            let conf = document.createElement("div");
+            conf.classList.add("confetti");
+            conf.style.left = (lastMouseX + Math.random() * 20 - 10) + "px";
+            conf.style.top = (lastMouseY + Math.random() * 20 - 10) + "px";
+            conf.style.background = randomColor();
+            conf.style.width = "6px";
+            conf.style.height = "6px";
+            conf.style.opacity = "0.9";
+            conf.style.transition = "all 1.5s ease-out";
+            conf.style.transform = `translate(${mouseVelocityX * 0.5}px, ${mouseVelocityY * 0.5}px)`;
+            document.body.appendChild(conf);
+            
+            setTimeout(() => {
+                conf.style.opacity = "0";
+                conf.style.transform = `translate(${mouseVelocityX * 2}px, ${mouseVelocityY * 2 + 50}px) scale(0.5)`;
+            }, 10);
+            
+            setTimeout(() => conf.remove(), 1500);
+        }
+        
+        // Create heart particles occasionally
+        if (Math.random() < 0.3) {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = randomHeart();
+            heart.style.left = (lastMouseX + Math.random() * 30 - 15) + "px";
+            heart.style.top = (lastMouseY + Math.random() * 30 - 15) + "px";
+            heart.style.fontSize = (15 + Math.random() * 15) + "px";
+            heart.style.color = randomHeartColor();
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+    }
+
+    // ******** PAGE 3 — CONTINUOUS CONFETTI RAIN ********
+    function startConfettiRain(){
+        setInterval(() => {
+            if (!document.getElementById("page3").classList.contains("active")) return;
+
+            let conf = document.createElement("div");
+            conf.classList.add("confetti");
+            conf.style.left = Math.random() * window.innerWidth + "px";
+            conf.style.background = randomColor();
+            conf.style.width = "8px";
+            conf.style.height = "8px";
+            conf.style.top = "-10px";
+            conf.style.transition = "top 4s linear";
+            document.body.appendChild(conf);
+            setTimeout(() => {
+                conf.style.top = "120vh";
+            }, 10);
+            setTimeout(() => conf.remove(), 4000);
+        }, 150);
+    }
+
+    // RANDOM COLOR GENERATOR
+    function randomColor() {
+        const colors = ["#ffffff", "#ff4081", "#ff8ac6", "#ffcce5", "#ffb6da"];
+        return colors[Math.floor(Math.random()*colors.length)];
+    }
+
+    // RANDOM HEART GENERATOR
+    function randomHeart() {
+        const hearts = ["❤️", "💕", "💖", "💗", "💓", "💞"];
+        return hearts[Math.floor(Math.random()*hearts.length)];
+    }
+
+    // RANDOM HEART COLOR GENERATOR
+    function randomHeartColor() {
+        const colors = ["#ff4081", "#ff8ac6", "#ffcce5", "#ffffff"];
+        return colors[Math.floor(Math.random()*colors.length)];
+    }
+
+    // ENHANCED COUNTDOWN TO 12 AM
+    function updateCountdown() {
+        let now = new Date();
+        let target = new Date();
+        target.setHours(24,0,0,0);
+        let diff = target - now;
+        
+        if(diff < 0) {
+            // IT'S HER BIRTHDAY!
+            if (!birthdayCelebrationStarted) {
+                startBirthdayCelebration();
+                birthdayCelebrationStarted = true;
+            }
+            return;
+        }
+        
+        let hrs = Math.floor(diff/1000/60/60);
+        let mins = Math.floor((diff/1000/60)%60);
+        let secs = Math.floor((diff/1000)%60);
+        document.getElementById("countdown").innerText = `${hrs}h ${mins}m ${secs}s`;
+        setTimeout(updateCountdown,1000);
+    }
+
+    // BIRTHDAY CELEBRATION FUNCTION
+    function startBirthdayCelebration() {
+        // Update countdown display
+        document.getElementById("countdown").innerHTML = 
+            "<span style='animation: pulse 1s infinite;'>🎉 HAPPY BIRTHDAY! 🎉</span>";
+        
+        // Change background
+        document.body.classList.add('birthday-time');
+        
+        // Show birthday message
+        document.getElementById('birthdayMessage').style.display = 'block';
+        
+        // Start enhanced fireworks
+        startBirthdayFireworks();
+        
+        // Add floating birthday emojis
+        startBirthdayEmojis();
+    }
+
+    function startBirthdayFireworks() {
+        // Create continuous fireworks
+        setInterval(() => {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    createFirework();
+                }, i * 200);
+            }
+        }, 1000);
+    }
+
+    function createFirework() {
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        
+        // Random position
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        
+        // Random color
+        const colors = ['#ff4081', '#ff8ac6', '#ffffff', '#ffcce5', '#ffb6da'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        firework.style.left = x + 'px';
+        firework.style.top = y + 'px';
+        firework.style.background = color;
+        firework.style.boxShadow = `0 0 10px ${color}`;
+        
+        document.body.appendChild(firework);
+        
+        // Animate firework
+        firework.style.transition = 'all 0.8s ease-out';
+        setTimeout(() => {
+            firework.style.transform = 'scale(30)';
+            firework.style.opacity = '0';
+        }, 10);
+        
+        // Remove firework after animation
+        setTimeout(() => {
+            firework.remove();
+        }, 1000);
+    }
+
+    function startBirthdayEmojis() {
+        const emojis = ['🎂', '🎉', '🎁', '✨', '🥳', '💝', '🎈'];
+        setInterval(() => {
+            const emoji = document.createElement('div');
+            emoji.classList.add('heart');
+            emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.fontSize = (30 + Math.random() * 30) + 'px';
+            document.body.appendChild(emoji);
+            
+            setTimeout(() => {
+                emoji.remove();
+            }, 3000);
+        }, 500);
+    }
+
+    function closeBirthdayMessage() {
+        document.getElementById('birthdayMessage').style.display = 'none';
+    }
+
+    // Initialize everything when page loads
+    window.onload = function() {
+        updateCountdown();
+        createFloatingHearts();
+    };
+</script>
+</body>
+</html>
